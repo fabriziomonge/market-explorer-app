@@ -327,8 +327,9 @@ if pagina == "Analisi asset":
     partecipazioni = partecipazioni.set_index('holdingName',1)
     partecipazioni = partecipazioni.drop('symbol',1)
 
-    ratio_di_mercato_eq = pd.DataFrame(list((stock.fund_equity_holdings[asset_selected]).values()),index=list((stock.fund_equity_holdings[asset_selected]).keys()), columns = [asset_selected])
-    ratio_di_mercato_bo = pd.DataFrame(list((stock.fund_bond_holdings[asset_selected]).values()),index=list((stock.fund_bond_holdings[asset_selected]).keys()), columns = [asset_selected])
+    ratio_di_mercato_eq = pd.DataFrame(list((stock.fund_equity_holdings[asset_selected]).values()),index=list((stock.fund_equity_holdings[asset_selected]).keys()), columns = [asset])
+    ratio_di_mercato_eq['Global market'] = (list((stock.fund_equity_holdings['VT']).values())))
+    ratio_di_mercato_bo = pd.DataFrame(list((stock.fund_bond_holdings[asset_selected]).values()),index=list((stock.fund_bond_holdings[asset_selected]).keys()), columns = [asset])
 
 
     interm = stock.technical_insights[asset_selected]['instrumentInfo']['technicalEvents']['intermediateTermOutlook']['scoreDescription']
@@ -340,10 +341,14 @@ if pagina == "Analisi asset":
 
     st.write("""## Principali partecipazioni""")
     partecipazioni
-    st.write("""## Ratios di mercato: bonds""")
-    ratio_di_mercato_bo
-    st.write("""## Ratios di mercato: equity""")
-    ratio_di_mercato_eq
+    
+    if len(ratio_di_mercato_bo)>0:
+        st.write("""## Ratios di mercato: bonds""")
+        ratio_di_mercato_bo
+    
+    if len(ratio_di_mercato_eq)>0:
+        st.write("""## Ratios di mercato: equity""")
+        ratio_di_mercato_eq
     st.write("""## Outlook analisti""")
     outlook
 
