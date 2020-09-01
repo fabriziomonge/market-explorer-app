@@ -13,6 +13,9 @@ import pandas as pd
 import streamlit as st
 import pandas_datareader as pdr
 import numpy as np
+import yahooquery as ya
+
+stock = ya.Ticker('VTI')
 
 
 # In[411]:
