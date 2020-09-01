@@ -54,16 +54,19 @@ for i in tickers_type:
         type_unique = type_unique
     else:
         type_unique.append(tipo)
-@st.cache
-def importa_dati(tickers,oggi):
-    data = pdr.get_data_yahoo(tickers, start="2015-1-1")['Close']
+
+url_dati = 'http://www.sphereresearch.net/Notebooks/dati_fondi.xlsx'
+
+def importa_dati():
+    data = pd.read_excel(url_dati)
+    data=data.set_index('Date',1)
     return data
 
 
 # In[415]:
 
 
-data = importa_dati(tickers,oggi)
+data = importa_dati()
 data = data.resample('M').last()
 data = pd.DataFrame(data.values, columns = tickers_name, index= data.index)
 
