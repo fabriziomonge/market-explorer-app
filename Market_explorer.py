@@ -322,13 +322,14 @@ if pagina == "Analisi asset":
 
     import yahooquery as ya
     stock = ya.Ticker(asset_selected)
+    stock2 = ya.Ticker('VT')
 
     partecipazioni = pd.DataFrame(stock.fund_top_holdings)
     partecipazioni = partecipazioni.set_index('holdingName',1)
     partecipazioni = partecipazioni.drop('symbol',1)
 
     ratio_di_mercato_eq = pd.DataFrame(list((stock.fund_equity_holdings[asset_selected]).values()),index=list((stock.fund_equity_holdings[asset_selected]).keys()), columns = [asset])
-    ratio_di_mercato_eq['Global market'] = (list((stock.fund_equity_holdings['VT']).values()))
+    ratio_di_mercato_eq['Global market'] = (list((stock2.fund_equity_holdings['VT']).values()))
     ratio_di_mercato_bo = pd.DataFrame(list((stock.fund_bond_holdings[asset_selected]).values()),index=list((stock.fund_bond_holdings[asset_selected]).keys()), columns = [asset])
 
 
