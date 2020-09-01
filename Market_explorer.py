@@ -32,7 +32,7 @@ st.image(image2, use_column_width=True)
 
 
 st.title("Market Explorer")
-pagina = st.sidebar.selectbox("""Menu""", ['Mappa della tendenza', 'Forze relative', 'Validazione modello'])
+pagina = st.sidebar.selectbox("""Menu""", ['Mappa della tendenza', 'Forze relative','Analisi asset', 'Validazione modello'])
 
 
 # In[414]:
@@ -297,9 +297,52 @@ if pagina == "Forze relative":
     st.altair_chart(fig2, use_container_width=True)
     #st.altair_chart(band, use_container_width=True)
     #data_plot
+    
+if pagina == "Analisi asset"
+
+    #Seleziona l'asset
+
+    selezionatore = pd.DataFrame(index=data.columns)
+    selezionatore['ticker'] = tickers
+    selezionatore['Type'] = tickers_type
+    selezionatore['Asset'] = selezionatore.index
+
+    tipo = st.sidebar.selectbox("Seleziona il tipo di asset", type_unique)
+    selezionatore = selezionatore.loc[selezionatore.Type == tipo]
 
 
-# In[ ]:
+    asset = st.sidebar.selectbox("Seleziona l'asset desiderata", selezionatore.index)
+    selezionatore = selezionatore.loc[selezionatore.Asset == asset]
+    asset_selected = selezionatore.ticker.values[0]
+
+    #Estrai il titolo scelto
+
+    import yahooquery as ya
+    stock = ya.Ticker(asset_selected)
+
+    partecipazioni = pd.DataFrame(stock.fund_top_holdings)
+    partecipazioni = partecipazioni.set_index('holdingName',1)
+    partecipazioni = partecipazioni.drop('symbol',1)
+
+    ratio_di_mercato_eq = pd.DataFrame(list((stock.fund_equity_holdings[asset_selected]).values()),index=list((stock.fund_equity_holdings[asset_selected]).keys()), columns = [asset_selected])
+    ratio_di_mercato_bo = pd.DataFrame(list((stock.fund_bond_holdings[asset_selected]).values()),index=list((stock.fund_bond_holdings[asset_selected]).keys()), columns = [asset_selected])
+
+
+    interm = stock.technical_insights[asset_selected]['instrumentInfo']['technicalEvents']['intermediateTermOutlook']['scoreDescription']
+    longterm = stock.technical_insights[asset_selected]['instrumentInfo']['technicalEvents']['longTermOutlook']['scoreDescription']
+    shortterm = stock.technical_insights[asset_selected]['instrumentInfo']['technicalEvents']['shortTermOutlook']['scoreDescription']
+    lista = [interm, longterm, shortterm]
+    outlook = pd.DataFrame(lista, index = ['Intermediate', 'Long', 'Short'], columns=['Outlook'])
+
+
+
+    partecipazioni
+    ratio_di_mercato_bo
+    ratio_di_mercato_eq
+    outlook
+
+
+
 
 
 
