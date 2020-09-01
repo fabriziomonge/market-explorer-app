@@ -298,7 +298,7 @@ if pagina == "Forze relative":
     #st.altair_chart(band, use_container_width=True)
     #data_plot
     
-if pagina == "Analisi asset"
+if pagina == "Analisi asset":
 
     #Seleziona l'asset
 
