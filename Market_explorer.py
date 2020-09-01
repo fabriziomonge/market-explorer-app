@@ -335,10 +335,13 @@ if pagina == "Analisi asset":
     outlook = pd.DataFrame(lista, index = ['Intermediate', 'Long', 'Short'], columns=['Outlook'])
 
 
-
+    st.write("""## Principali partecipazioni""")
     partecipazioni
+    st.write("""## Ratios di mercato: bonds""")
     ratio_di_mercato_bo
+    st.write("""## Ratios di mercato: equity""")
     ratio_di_mercato_eq
+    st.write("""## Outlook analisti""")
     outlook
 
 
