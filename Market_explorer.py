@@ -339,7 +339,7 @@ if pagina == "Analisi asset":
     lista = [interm, longterm, shortterm]
     outlook = pd.DataFrame(lista, index = ['Intermediate', 'Long', 'Short'], columns=['Outlook'])
 
-
+    st.write("""## Asset selezionata: """, asset)
     st.write("""## Principali partecipazioni""")
     partecipazioni
     
