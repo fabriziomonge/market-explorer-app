@@ -5,4 +5,4 @@ pandas_datareader==0.8.1
 numpy==1.18.1
 Pillow==7.2.0
 yfinance
-yahooquery
+yahooquery==2.2.4
