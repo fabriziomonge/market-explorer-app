@@ -348,11 +348,13 @@ if pagina == "Analisi asset":
     
     if len(ratio_di_mercato_bo)>0:
         st.write("""## Ratios di mercato: bonds""")
+        ratio_di_mercato_bo = ratio_di_mercato_bo.transpose()
         ratio_di_mercato_bo
         st.bar_chart(data=ratio_di_mercato_bo, width=0, height=0, use_container_width=True)
     
     if len(ratio_di_mercato_eq)>0:
         st.write("""## Ratios di mercato: equity""")
+        ratio_di_mercato_eq = ratio_di_mercato_eq.transpose()
         ratio_di_mercato_eq
         st.bar_chart(data=ratio_di_mercato_eq, width=0, height=0, use_container_width=True)
     st.write("""## Outlook analisti""")
