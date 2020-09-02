@@ -342,6 +342,7 @@ if pagina == "Analisi asset":
     st.write("""## Asset selezionata: """, asset)
     st.write("""## Principali partecipazioni""")
     partecipazioni
+    st.bar_chart(data=partecipazioni, width=0, height=0, use_container_width=True)
     
     if len(ratio_di_mercato_bo)>0:
         st.write("""## Ratios di mercato: bonds""")
