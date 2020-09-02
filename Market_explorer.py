@@ -340,6 +340,8 @@ if pagina == "Analisi asset":
     outlook = pd.DataFrame(lista, index = ['Intermediate', 'Long', 'Short'], columns=['Outlook'])
 
     st.write("""## Asset selezionata: """, asset)
+    st.write("""## Proxy fund:""", asset_selected)
+    st.write("""## """)
     st.write("""## Principali partecipazioni""")
     partecipazioni
     st.bar_chart(data=partecipazioni, width=0, height=0, use_container_width=True)
@@ -347,10 +349,12 @@ if pagina == "Analisi asset":
     if len(ratio_di_mercato_bo)>0:
         st.write("""## Ratios di mercato: bonds""")
         ratio_di_mercato_bo
+        st.bar_chart(data=ratio_di_mercato_bo, width=0, height=0, use_container_width=True)
     
     if len(ratio_di_mercato_eq)>0:
         st.write("""## Ratios di mercato: equity""")
         ratio_di_mercato_eq
+        st.bar_chart(data=ratio_di_mercato_eq, width=0, height=0, use_container_width=True)
     st.write("""## Outlook analisti""")
     outlook
 
