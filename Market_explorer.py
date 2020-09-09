@@ -356,6 +356,29 @@ if pagina == "Analisi asset":
     asset_x = asset_x.dropna()
     st.line_chart(asset_x)
     
+    #Drawdown
+    
+    def dd(serie):
+    serief = pd.DataFrame(serie.values, columns = ["prezzo"])
+    lista = []
+    lista2 =[]
+    a1 = serief['prezzo'].values[0]
+    lista.append(a1)
+    lista2.append(0)
+    for i in range (1,len(serief)):
+        a = max((serief['prezzo'][i]),lista[i-1])
+        lista.append(a)
+        dd = ((serief['prezzo'][i])-lista[i])/lista[i]
+        lista2.append(dd)
+    return lista2
+
+    drawdown= dd(asset_x[asset])
+    drawdown= pd.DataFrame(drawdown, index=asset_x.index, columns=['Drawdown'])
+    st.write("""## Drawdown: """)
+    st.line_chart(drawdown)
+    
+                      
+    
     #Ratios
     if len(ratio_di_mercato_bo)>0:
         st.write("""## Ratios di mercato: bonds""")
