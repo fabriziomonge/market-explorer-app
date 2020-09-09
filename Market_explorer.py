@@ -349,12 +349,12 @@ if pagina == "Analisi asset":
     st.bar_chart(data=partecipazioni, width=0, height=0, use_container_width=True)
     
     # Andamento
-    st.write("""## Andamento di marcato: """)
+    st.write("""## Andamento di mercato: """)
     asset_x = pd.DataFrame(data[asset])
     asset_x['index']=asset_x.index
     asset_x = asset_x.set_index('index', drop=True)
     asset_x = asset_x.dropna()
-    st.area_chart(asset_x, color='red')
+    st.area_chart(asset_x)
     
     #Drawdown
     
