@@ -34,6 +34,7 @@ st.image(image2, use_column_width=True)
 st.title("Market Explorer")
 pagina = st.sidebar.selectbox("""Menu""", ['Mappa della tendenza', 'Forze relative','Analisi asset', 'Validazione modello'])
 
+# pagina = 'Analisi asset'
 
 # In[414]:
 
@@ -346,6 +347,12 @@ if pagina == "Analisi asset":
     partecipazioni
     st.bar_chart(data=partecipazioni, width=0, height=0, use_container_width=True)
     
+    asset_x = pd.DataFrame(data[asset])
+    asset_x['index']=asset_x.index
+    asset_x = asset_x.set_index('index', drop=True)
+    asset_x = asset_x.dropna()
+    st.line_chart(asset_x)
+    
     if len(ratio_di_mercato_bo)>0:
         st.write("""## Ratios di mercato: bonds""")
         ratio_di_mercato_bo = ratio_di_mercato_bo.transpose()
@@ -357,12 +364,7 @@ if pagina == "Analisi asset":
         ratio_di_mercato_eq = ratio_di_mercato_eq.transpose()
         ratio_di_mercato_eq
         st.bar_chart(data=ratio_di_mercato_eq, width=0, height=0, use_container_width=True)
+        
     st.write("""## Outlook analisti""")
     outlook
-
-
-
-
-
-
 
