@@ -375,7 +375,7 @@ if pagina == "Analisi asset":
     drawdown= dd(asset_x[asset])
     drawdown= pd.DataFrame(drawdown, index=asset_x.index, columns=['Drawdown'])
     st.write("""## Drawdown: """)
-    st..area_chart(drawdown)
+    st.area_chart(drawdown)
     
                       
     
