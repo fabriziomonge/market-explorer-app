@@ -286,7 +286,7 @@ if pagina == "Forze relative":
     data_secondo = pd.DataFrame(data[seconda])
 
     data_plot = pd.DataFrame(data_primo.values/data_secondo.values, columns=['Ratio'], index=data_primo.index)
-    data_plot['Mean'] = data_plot.Ratio.rolling(5).mean()
+    data_plot['Mean'] = data_plot.Ratio.rolling(smooth).mean()
     data_plot = data_plot/data_plot.shift(1)
     data_plot = data_plot.fillna(1)
     data_plot = data_plot.cumprod()
