@@ -349,6 +349,7 @@ if pagina == "Analisi asset":
     st.bar_chart(data=partecipazioni, width=0, height=0, use_container_width=True)
     
     # Andamento
+    st.write("""## Andamento di marcato: """)
     asset_x = pd.DataFrame(data[asset])
     asset_x['index']=asset_x.index
     asset_x = asset_x.set_index('index', drop=True)
