@@ -354,7 +354,7 @@ if pagina == "Analisi asset":
     asset_x['index']=asset_x.index
     asset_x = asset_x.set_index('index', drop=True)
     asset_x = asset_x.dropna()
-    st.line_chart(asset_x)
+    st.area_chart(asset_x, color='red')
     
     #Drawdown
     
