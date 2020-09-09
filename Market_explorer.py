@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # coding: utf-8
 
 # # Prove per il plotting scatter con selettori
@@ -274,6 +273,7 @@ if pagina == "Forze relative":
 
     prima = st.sidebar.selectbox("Seleziona la prima asset per il confronto", data.columns)
     seconda = st.sidebar.selectbox("Seleziona la seconda asset per il confronto", data.columns)
+    smooth = st.sidebar.number_input("Smoothing della tendenza", min_value = 1, max_value = 12, value = 5)
 
     st.write("""** Confronto fra """, prima, """ e """, seconda, """** """)
 
@@ -340,6 +340,7 @@ if pagina == "Analisi asset":
     lista = [interm, longterm, shortterm]
     outlook = pd.DataFrame(lista, index = ['Intermediate', 'Long', 'Short'], columns=['Outlook'])
 
+    # partecipazioni
     st.write("""## Asset selezionata: """, asset)
     st.write("""## Proxy fund:""", asset_selected)
     st.write("""## """)
@@ -347,13 +348,14 @@ if pagina == "Analisi asset":
     partecipazioni
     st.bar_chart(data=partecipazioni, width=0, height=0, use_container_width=True)
     
-    st.write("""## Andamento di mercato""")
+    # Andamento
     asset_x = pd.DataFrame(data[asset])
     asset_x['index']=asset_x.index
     asset_x = asset_x.set_index('index', drop=True)
     asset_x = asset_x.dropna()
     st.line_chart(asset_x)
     
+    #Ratios
     if len(ratio_di_mercato_bo)>0:
         st.write("""## Ratios di mercato: bonds""")
         ratio_di_mercato_bo = ratio_di_mercato_bo.transpose()
@@ -365,7 +367,7 @@ if pagina == "Analisi asset":
         ratio_di_mercato_eq = ratio_di_mercato_eq.transpose()
         ratio_di_mercato_eq
         st.bar_chart(data=ratio_di_mercato_eq, width=0, height=0, use_container_width=True)
-        
+    
+    #Outlook
     st.write("""## Outlook analisti""")
     outlook
-
